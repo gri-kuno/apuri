@@ -1,0 +1,213 @@
+<!DOCTYPE HTML>
+<html lang="ja" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+  <meta http-equiv="Content-Security-Policy" content="default-src * data: gap: https://ssl.gstatic.com; style-src * 'unsafe-inline'; script-src * 'unsafe-inline' 'unsafe-eval'">
+  <script src="components/loader.js"></script>
+  <script src="lib/onsenui/js/onsenui.min.js"></script>
+
+  <link rel="stylesheet" href="components/loader.css">
+  <link rel="stylesheet" href="lib/onsenui/css/onsenui.css">
+  <link rel="stylesheet" href="lib/onsenui/css/onsen-css-components.css">
+  <link rel="stylesheet" href="css/style.css">
+  <!-- <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
+  <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script> -->
+
+  <script>
+    // Page init event
+    document.addEventListener('init', function(event) {
+      var page = event.target;
+
+      if (page.matches('#first-page')) {
+
+        page.querySelector('#push-button').onclick = function() {
+          document.querySelector('#navigator').pushPage('page2.html');
+        }
+        
+      } else if (page.matches('#second-page')) {
+
+        page.querySelector('#pop-button').onclick = function() {
+          document.querySelector('#navigator').popPage();
+
+
+        };
+
+
+      }
+      if (page.matches('#second-page')) {
+          
+          page.querySelector('#push-button').onclick = function() {
+            document.querySelector('#navigator').pushPage('page3.html');
+          }
+
+          } else if (page.matches('#third-page')) {
+
+          page.querySelector('#pop-button').onclick = function() {
+            document.querySelector('#navigator').popPage();
+          };
+        }
+    });
+
+    if (ons.platform.isIPhoneX()) {
+      document.documentElement.setAttribute('onsflag-iphonex-portrait', '');
+      document.documentElement.setAttribute('onsflag-iphonex-landscape', '');
+    }
+  </script>
+</head>
+<body>
+
+   
+  <!-- 1ページ目のスタートーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー -->
+ 
+  <ons-navigator id="navigator" page="page1.html"></ons-navigator>
+
+  <ons-template id="page1.html">
+    <ons-page id="first-page">
+      <!-- <ons-toolbar>
+        <div class="center">Page 1</div>
+      </ons-toolbar> -->
+      
+      <div class="content" style="text-align: center">
+        <div class="iti">
+          
+          <!-- ログインの処理ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー ーーーーーーーーーーーーーー-->
+                  <?xml version="1.0" encoding="euc-jp"?>
+                  <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+                  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+                  <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
+                  <head>
+                    <title>&nbsp;</title>
+                  </head>
+                  
+                    
+                    <center>
+                      <br />
+                      <table widtth="100%">
+                          
+                        <tr><td align="center" bgcolor="#000066">
+                            <font color="#ffffff"><b>ログイン</b></font>
+                        </td></tr></table>
+                        <br />
+                        IDとパスワードを入力してください<br />
+                          <br />
+                          
+                          <form name="Login" method="post" action="/cgi-bin/Login.cgi">
+                            <table><tr>
+                              <td>ID</td>
+                              <td>
+                                
+                                <input type="text" name="uid" size="40" maxlength="32" autocomplete="OFF" />
+                                
+                              </td>
+                            </tr> <tr>
+                              <td>パスワード</td>
+                              <td>
+                                <input type=" password" name="pwd" size="40" maxlength="32" autocomplete="OFF" />
+                              </td></tr>
+                            </table>
+                            <br />
+                            <!-- <input type="submit" value="ログイン" /> -->
+                            <ons-button id="push-button">ログイン</ons-button>
+                          </form>
+                          <br /><br /><br /><br /><br /><br />
+                          </center>
+                        </div>
+                      </div>
+                    </ons-page>
+                   </ons-template>
+        
+        
+        
+        
+        
+        
+        <!-- ログインの処理ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー ーーーーーーーーーーーーーー-->
+        
+        
+        <!-- 2ページ目のスタート -->
+        
+        <!-- <html lang="ja" dir="ltr"> -->
+          <!-- <head>
+            <meta charset="utf-8">
+            <title>Leafletデモ</title> -->
+            <!-- </head> -->
+            
+            
+            <div id="mapid"></div>
+            
+            
+            <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.1/dist/leaflet.css" integrity="sha512Rksm5RenBEKSKFjgI3a41vrjkw4EVPlJ3+OiI65vTjIdo9brlAacEuKOiQ5OFh7cOI1bkDwLqdLw3Zg0cRJAAQ==" crossorigin="" />
+            <script src="https://unpkg.com/leaflet@1.3.1/dist/leaflet.js" integrity="sha512-/Nsx9X4HebavoBvEBuyp3I7od5tA0UzAxs+j83KgC8PU0kgB4XiK4Lfe4y4cgBtaRJQEIFCW+oC506aPT2L1zw==" crossorigin=""></script>
+            
+            <style media="screen">
+              #mapid {
+                height: 500px;
+              }
+              </style>
+
+<script type="text/javascript">
+    //地図の中心地を定義
+    var mymap = L.map('mapid').setView([51.505, -0.09], 13);
+    
+    //タイルレイヤーを取得
+    L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
+      attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
+      maxZoom: 18,
+      id: 'mapbox.streets',
+      accessToken: 'pk.eyJ1Ijoia3VubzciLCJhIjoiY2tiMXI3YmNjMDNrNjJ4cXBiZ3dobGJkeiJ9.dVO3NI9vrHwRiyMoliv57Q' //ここにaccess tokenを挿入
+    }).addTo(mymap);
+    
+    // Marker（ピン）を追加する
+    var marker = L.marker([51.5, -0.09]).addTo(mymap);
+    marker.bindPopup("<b>どこいったの？</b>").openPopup();
+  </script>
+  <ons-template id="page2.html">
+    <!-- <div id="map"></div> -->
+    <ons-page id="second-page">
+      <ons-toolbar>
+        <div class="left"><ons-back-button>Page 1</ons-back-button></div>
+        <div class="center">Page 2</div>
+      </ons-toolbar>
+      
+      <!-- // 地図を乗せる ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー-->
+      <!-- <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
+        integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+        crossorigin=""/>
+        
+        <!-- Make sure you put this AFTER Leaflet's CSS -->
+        <!-- <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
+          integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
+          crossorigin=""></script>
+          
+          <div id="mapid"></div> --> 
+          <!-- // 地図を乗せる ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー-->
+          
+          
+          <div class="content" style="text-align: center">
+            <p>This is the second page.</p>
+            <ons-button id="pop-button">Pop page</ons-button>
+            <ons-button id="push-button">Push page</ons-button>
+            
+          </div>
+        </ons-page>
+      </ons-template>
+      
+      <!-- ３ページ目のスタート -->
+      <ons-template id="page3.html">
+        <ons-page id="third-page">
+          <ons-toolbar>
+            <div class="left"><ons-back-button>Page 1</ons-back-button></div>
+
+            <!-- <img src="www/kku.PNG" alt="地図"> -->
+            <div class="center">Page 3</div>
+          </ons-toolbar>
+          <div class="content" style="text-align: center">
+            <ons-button class="san" id="pop-button">Pop page</ons-button>
+          </div>
+        </ons-page>
+      </ons-template>
+      
+    </body>
+    </html>
+    

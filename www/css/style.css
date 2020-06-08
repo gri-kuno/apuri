@@ -1,0 +1,14 @@
+/**/
+.page__content {
+  background-color:skyblue;
+}
+
+.page__content  > .iti{
+  margin-top: 100px;
+}
+
+.page__content > .san{
+  margin-top: 50px;
+}
+
+#mapid { height: 180px; }
